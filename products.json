@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Sản phẩm A",
+    "description": "Mô tả ngắn gọn sản phẩm A.",
+    "price": 150000,
+    "image": "https://via.placeholder.com/300x150?text=San+pham+A"
+  },
+  {
+    "name": "Sản phẩm B",
+    "description": "Mô tả ngắn gọn sản phẩm B.",
+    "price": 250000,
+    "image": "https://via.placeholder.com/300x150?text=San+pham+B"
+  },
+  {
+    "name": "Sản phẩm C",
+    "description": "Mô tả ngắn gọn sản phẩm C.",
+    "price": 200000,
+    "image": "https://via.placeholder.com/300x150?text=San+pham+C"
+  }
+]
