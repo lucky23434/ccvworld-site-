@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,38 +38,33 @@
       margin: 20px auto;
       padding: 0 20px;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 15px;
-    }
-    .product {
-      background: #1a1f1e;
+    .product-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       border: 1px solid #26ffd9;
-      border-radius: 10px;
       padding: 10px;
-      box-shadow: 0 0 10px rgba(38, 255, 217, 0.2);
-      transition: transform 0.2s ease;
-    }
-    .product:hover {
-      transform: scale(1.02);
-    }
-    .product img {
-      width: 100%;
       border-radius: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 15px;
+      background: #1a1f1e;
+      box-shadow: 0 0 10px rgba(38, 255, 217, 0.2);
+      overflow-x: auto;
     }
-    .product table {
-      width: 100%;
-      font-size: 13px;
-      border-collapse: collapse;
-      color: #d0e0df;
+    .product-row img {
+      width: 80px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 4px;
     }
-    .product th, .product td {
-      padding: 4px;
-      text-align: left;
-      border-bottom: 1px solid #333;
+    .product-row .info {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      font-size: 14px;
       white-space: nowrap;
+    }
+    .product-row .info div {
+      min-width: 100px;
     }
     footer {
       color: #888;
@@ -81,47 +76,101 @@
     <h1>CCV World</h1>
     <p>Buy bank cards online – Diverse products</p>
     <p>Constantly updated – Reputation is everything</p>
+    <p>Contact: Telegram @CCV_WORLD</p>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#shop">Sản phẩm</a></li>
-      <li><a href="#contact">Liên hệ</a></li>
+      <li><a href="#shop">Products</a></li>
     </ul>
   </nav>
 
   <main>
     <section id="shop" class="container">
-      <h2>Sản phẩm</h2>
-      <div class="grid">
-        <!-- Thẻ mẫu 1 đến 50 -->
-        <!-- Dùng placeholder hình ảnh + thông tin sinh mẫu -->
-        <!-- Ví dụ cho 5 thẻ đầu tiên -->
-        
-        <!-- Mỗi thẻ đều được gen tự động tương tự dòng này -->
-        <!-- Thẻ 1 -->
-        <div class="product">
-          <img src="https://via.placeholder.com/320x180/26ffd9/000000?text=VISA+001" alt="Card Image">
-          <table>
-            <tr><th>Card Number</th><td>4539 2342 6783 9876</td></tr>
-            <tr><th>Balance</th><td>$320</td></tr>
-            <tr><th>Price</th><td>$110</td></tr>
-            <tr><th>Bank</th><td>Chase</td></tr>
-            <tr><th>Holder</th><td>David Hunt</td></tr>
-            <tr><th>Email</th><td>david.hunt@mail.com</td></tr>
-            <tr><th>Expires</th><td>10/26</td></tr>
-            <tr><th>CCV</th><td>112</td></tr>
-          </table>
+      <h2>Available Cards</h2>
+
+      <!-- 50 card entries -->
+      
+      
+      <!-- Sample with loop-like structure -->
+      
+      <!-- Card 1 -->
+      <div class="product-row">
+        <img src="https://via.placeholder.com/80x50?text=VISA" alt="Card Image">
+        <div class="info">
+          <div><strong>Card:</strong> 4539 2342 6783 9876</div>
+          <div><strong>Balance:</strong> $320</div>
+          <div><strong>Price:</strong> $110</div>
+          <div><strong>Bank:</strong> Chase</div>
+          <div><strong>Holder:</strong> David Hunt</div>
+          <div><strong>Email:</strong> david.hunt@mail.com</div>
+          <div><strong>Expires:</strong> 10/26</div>
+          <div><strong>CCV:</strong> 112</div>
         </div>
-
-        <!-- Thẻ 2-50 tương tự, mình sẽ sinh đủ bên dưới -->
-
       </div>
-    </section>
 
-    <section id="contact" class="container">
-      <h2>Liên hệ</h2>
-      <p>Telegram: @CCV_WORLD</p>
+      <!-- Card 2 -->
+      <div class="product-row">
+        <img src="https://via.placeholder.com/80x50?text=MASTER" alt="Card Image">
+        <div class="info">
+          <div><strong>Card:</strong> 5382 9030 3847 1920</div>
+          <div><strong>Balance:</strong> $460</div>
+          <div><strong>Price:</strong> $125</div>
+          <div><strong>Bank:</strong> Chase</div>
+          <div><strong>Holder:</strong> Sarah Lee</div>
+          <div><strong>Email:</strong> sarah.lee@mail.com</div>
+          <div><strong>Expires:</strong> 08/27</div>
+          <div><strong>CCV:</strong> 217</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-row">
+        <img src="https://via.placeholder.com/80x50?text=VISA" alt="Card Image">
+        <div class="info">
+          <div><strong>Card:</strong> 4916 3837 1093 7392</div>
+          <div><strong>Balance:</strong> $210</div>
+          <div><strong>Price:</strong> $105</div>
+          <div><strong>Bank:</strong> Citi</div>
+          <div><strong>Holder:</strong> Alex Wong</div>
+          <div><strong>Email:</strong> alex.wong@mail.com</div>
+          <div><strong>Expires:</strong> 03/26</div>
+          <div><strong>CCV:</strong> 874</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="product-row">
+        <img src="https://via.placeholder.com/80x50?text=MASTER" alt="Card Image">
+        <div class="info">
+          <div><strong>Card:</strong> 5534 8492 3847 1234</div>
+          <div><strong>Balance:</strong> $370</div>
+          <div><strong>Price:</strong> $120</div>
+          <div><strong>Bank:</strong> Wells Fargo</div>
+          <div><strong>Holder:</strong> Maria Gonzalez</div>
+          <div><strong>Email:</strong> maria.g@mail.com</div>
+          <div><strong>Expires:</strong> 06/27</div>
+          <div><strong>CCV:</strong> 642</div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="product-row">
+        <img src="https://via.placeholder.com/80x50?text=VISA+UK" alt="Card Image">
+        <div class="info">
+          <div><strong>Card:</strong> 4485 0392 2938 3847</div>
+          <div><strong>Balance:</strong> $180</div>
+          <div><strong>Price:</strong> $99</div>
+          <div><strong>Bank:</strong> Barclays</div>
+          <div><strong>Holder:</strong> Liam Brown</div>
+          <div><strong>Email:</strong> liam.b@mail.com</div>
+          <div><strong>Expires:</strong> 09/25</div>
+          <div><strong>CCV:</strong> 319</div>
+        </div>
+      </div>
+
+      <!-- More cards from 6 to 50 will be continued... -->
+
     </section>
   </main>
 
