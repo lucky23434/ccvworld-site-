@@ -6,8 +6,8 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #000;       /* nền đen */
-  color: #fff;            /* chữ trắng */
+  background: #000;          /* Nền đen */
+  color: #fff;               /* Chữ trắng */
 }
 
 header {
@@ -18,7 +18,7 @@ header {
 }
 
 nav {
-  background: #000000;
+  background: #000;
 }
 
 nav ul {
@@ -38,9 +38,15 @@ nav ul li a {
   display: block;
 }
 
+nav ul li a:hover {
+  background-color: #222;
+  border-radius: 4px;
+}
+
 .container {
   max-width: 960px;
   margin: 40px auto;
+  padding: 0 20px;
 }
 
 .grid {
@@ -50,10 +56,15 @@ nav ul li a {
 }
 
 .product {
-  background: #111;             /* hộp sản phẩm nền tối nhẹ */
-  border: 1px solid #444;
+  background: #1a1a1a;       /* Màu xám đen dễ nhìn hơn đen tuyệt đối */
+  border: 1px solid #333;
   border-radius: 8px;
   overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.product:hover {
+  transform: scale(1.02);
 }
 
 .product img {
@@ -74,9 +85,18 @@ nav ul li a {
 
 .product-info p {
   margin-bottom: 8px;
-  color: #ccc;
+  color: #ccc; /* Mô tả xám nhạt */
 }
 
 .product-info .price {
   font-weight: bold;
-  color: #4
+  color: #4dabf7; /* Màu xanh dương nhạt */
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background: #003366;
+  color: #fff;
+  margin-top: 40px;
+}
