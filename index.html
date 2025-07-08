@@ -6,14 +6,10 @@
   <title>CCV World</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
+    body {
       background-color: #0a0f0d;
       color: #d0e0df;
       font-family: 'Courier New', Courier, monospace;
-      overflow-x: hidden;
     }
     header, footer {
       text-align: center;
@@ -38,42 +34,40 @@
       font-weight: bold;
     }
     .container {
-      max-width: 1400px;
-      margin: 40px auto;
+      max-width: 1200px;
+      margin: 20px auto;
       padding: 0 20px;
     }
     .product-row {
       display: flex;
-      flex-wrap: nowrap;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
       border: 1px solid #26ffd9;
       padding: 10px;
       border-radius: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: #1a1f1e;
       box-shadow: 0 0 10px rgba(38, 255, 217, 0.2);
       overflow-x: auto;
     }
     .product-row img {
-      width: 100px;
-      height: 60px;
+      width: 80px;
+      height: 50px;
       object-fit: contain;
       border-radius: 4px;
     }
     .product-row .info {
       display: flex;
       flex-wrap: nowrap;
-      gap: 25px;
+      gap: 20px;
       font-size: 14px;
       white-space: nowrap;
     }
     .product-row .info div {
-      min-width: 120px;
+      min-width: 100px;
     }
     footer {
       color: #888;
-      margin-top: 60px;
     }
   </style>
 </head>
@@ -84,10 +78,24 @@
     <p>Constantly updated – Reputation is everything</p>
   </header>
 
+  <nav>
+    <ul>
+      <li><a href="#shop">Contact: Telegram @CCV_WORLD</a></li>
+    </ul>
+  </nav>
+
   <main>
     <section id="shop" class="container">
+      <h2>Available Cards</h2>
+
+      <!-- 50 card entries -->
+      
+      
+      <!-- Sample with loop-like structure -->
+      
+      <!-- Card 1 -->
       <div class="product-row">
-        <img src="https://via.placeholder.com/100x60?text=VISA" alt="Card Image">
+        <img src="https://via.placeholder.com/80x50?text=VISA" alt="Card Image">
         <div class="info">
           <div><strong>Card:</strong> 4539 2342 6783 9876</div>
           <div><strong>Balance:</strong> $320</div>
@@ -100,8 +108,9 @@
         </div>
       </div>
 
+      <!-- Card 2 -->
       <div class="product-row">
-        <img src="https://via.placeholder.com/100x60?text=MASTER" alt="Card Image">
+        <img src="https://via.placeholder.com/80x50?text=MASTER" alt="Card Image">
         <div class="info">
           <div><strong>Card:</strong> 5382 9030 3847 1920</div>
           <div><strong>Balance:</strong> $460</div>
@@ -114,8 +123,9 @@
         </div>
       </div>
 
+      <!-- Card 3 -->
       <div class="product-row">
-        <img src="https://via.placeholder.com/100x60?text=VISA" alt="Card Image">
+        <img src="https://via.placeholder.com/80x50?text=VISA" alt="Card Image">
         <div class="info">
           <div><strong>Card:</strong> 4916 3837 1093 7392</div>
           <div><strong>Balance:</strong> $210</div>
@@ -128,8 +138,9 @@
         </div>
       </div>
 
+      <!-- Card 4 -->
       <div class="product-row">
-        <img src="https://via.placeholder.com/100x60?text=MASTER" alt="Card Image">
+        <img src="https://via.placeholder.com/80x50?text=MASTER" alt="Card Image">
         <div class="info">
           <div><strong>Card:</strong> 5534 8492 3847 1234</div>
           <div><strong>Balance:</strong> $370</div>
@@ -142,8 +153,9 @@
         </div>
       </div>
 
+      <!-- Card 5 -->
       <div class="product-row">
-        <img src="https://via.placeholder.com/100x60?text=VISA+UK" alt="Card Image">
+        <img src="https://via.placeholder.com/80x50?text=VISA+UK" alt="Card Image">
         <div class="info">
           <div><strong>Card:</strong> 4485 0392 2938 3847</div>
           <div><strong>Balance:</strong> $180</div>
@@ -155,11 +167,9 @@
           <div><strong>CCV:</strong> 319</div>
         </div>
       </div>
-    </section>
 
-    <section id="contact" class="container">
-      <h2>Contact</h2>
-      <p>Telegram: @CCV_WORLD</p>
+      <!-- More cards from 6 to 50 will be continued... -->
+
     </section>
   </main>
 
