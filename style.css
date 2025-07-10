@@ -7,8 +7,8 @@
 html, body {
   height: auto;            /* Cho scroll dọc */
   overflow-x: hidden;      /* Ẩn tràn ngang */
-  background: #000;        /* Nền Đen tuyệt đối */
-  color: #fff;             /* Chữ Trắng */
+  background: #000;        /* Nền đen tuyệt đối */
+  color: #fff;             /* Chữ trắng */
   font-family: Arial, sans-serif;
 }
 
