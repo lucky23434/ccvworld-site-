@@ -8,11 +8,12 @@
     /* RESET */
     * { margin:0; padding:0; box-sizing:border-box; }
 
-    /* FULL WIDTH & HEIGHT */
+    /* FULL EXPAND */
     html, body {
-      width:100vw;
-      min-height:100vh;
-      overflow-x:hidden;
+      width:auto;
+      min-width:100%;
+      height:auto;
+      overflow-x:auto;
       overflow-y:auto;
       background:#000;
       color:#fff;
@@ -37,44 +38,65 @@
     nav ul { list-style:none; display:flex; justify-content:center; }
     nav ul li { margin:0 15px; }
     nav ul li a {
-      color:#26ffd9; text-decoration:none; font-weight:bold;
+      color:#26ffd9;
+      text-decoration:none;
+      font-weight:bold;
     }
 
     /* MAIN */
     main {
-      width:100vw;
+      width:auto;
       padding:20px;
+      white-space:normal;
     }
 
     /* PRODUCT ROW */
     .product-row {
-      display:flex; align-items:center; gap:20px;
-      border:1px solid #26ffd9; padding:15px; border-radius:8px;
-      margin-bottom:30px; background:#1a1f1e;
+      display:flex;
+      align-items:center;
+      gap:20px;
+      border:1px solid #26ffd9;
+      padding:15px;
+      border-radius:8px;
+      margin-bottom:30px;
+      background:#1a1f1e;
       overflow-x:auto;
     }
     .product-row img {
-      flex:0 0 auto; width:120px; height:80px;
-      object-fit:cover; border-radius:4px;
+      flex:0 0 auto;
+      width:120px;
+      height:80px;
+      object-fit:cover;
+      border-radius:4px;
     }
     .product-row .info {
-      display:flex; gap:25px; white-space:nowrap;
-      flex:1 0 auto; font-size:14px;
+      display:flex;
+      gap:25px;
+      white-space:nowrap;
+      flex:1 0 auto;
+      font-size:14px;
     }
     .product-row .info div { min-width:140px; }
 
     /* CONTACT */
     #contact {
-      width:100vw; padding:20px;
-      text-align:center; background:#121c1b; margin-top:40px;
+      width:auto;
+      padding:20px;
+      text-align:center;
+      background:#121c1b;
+      margin-top:40px;
+      white-space:normal;
     }
-    #contact p { color:#26ffd9; }
+    #contact p { color:#26ffd9; margin:0; }
 
     /* FOOTER */
     footer {
-      width:100%; background:#003366;
-      text-align:center; padding:20px 0;
-      margin-top:40px; color:#888;
+      width:100%;
+      background:#003366;
+      text-align:center;
+      padding:20px 0;
+      margin-top:40px;
+      color:#888;
     }
   </style>
 </head>
@@ -93,7 +115,7 @@
   </nav>
 
   <main>
-    <!-- 5 mẫu đầu tiên: copy thả thêm 45 lần để đủ 50 -->
+    <!-- 5 sample cards; copy-paste thêm 45 lần để đủ 50 cards -->
     <div class="product-row">
       <img src="https://via.placeholder.com/120x80?text=VISA" alt="VISA">
       <div class="info">
@@ -123,7 +145,7 @@
     </div>
 
     <div class="product-row">
-      <img src="https://via.placeholder.com/120x80?text=VISA" alt="VISA Premium">
+      <img src="https://via.placeholder.com/120x80?text=VISA+PREMIUM" alt="VISA Premium">
       <div class="info">
         <div><strong>Card Number:</strong> 4916 3837 1093 7392</div>
         <div><strong>Balance:</strong> $210</div>
@@ -137,14 +159,14 @@
     </div>
 
     <div class="product-row">
-      <img src="https://via.placeholder.com/120x80?text=MASTER" alt="MasterCard Debit">
+      <img src="https://via.placeholder.com/120x80?text=MASTER+DEBIT" alt="MasterCard Debit">
       <div class="info">
         <div><strong>Card Number:</strong> 5534 8492 3847 1234</div>
         <div><strong>Balance:</strong> $370</div>
         <div><strong>Price:</strong> $120</div>
         <div><strong>Bank:</strong> Wells Fargo</div>
         <div><strong>Holder:</strong> Maria Gonzalez</div>
-        <div><strong>Email:</strong> maria.g@mail.com</div>
+        <div><strong>Email:</strong> maria.gonzalez@mail.com</div>
         <div><strong>Expires:</strong> 06/27</div>
         <div><strong>CCV:</strong> 642</div>
       </div>
@@ -158,12 +180,12 @@
         <div><strong>Price:</strong> $99</div>
         <div><strong>Bank:</strong> Barclays</div>
         <div><strong>Holder:</strong> Liam Brown</div>
-        <div><strong>Email:</strong> liam.b@mail.com</div>
+        <div><strong>Email:</strong> liam.brown@mail.com</div>
         <div><strong>Expires:</strong> 09/25</div>
         <div><strong>CCV:</strong> 319</div>
       </div>
     </div>
-    <!-- ↑ Copy từ “<div class="product-row">…</div>” này thêm 45 lần ↓ -->
+    <!-- Copy these 5 blocks and paste below to create total 50 cards -->
 
   </main>
 
