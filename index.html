@@ -65,9 +65,9 @@
       return shown.match(/.{1,4}/g).join(' ') + ' ******';
     }
     function maskMid(s){
-      s = String(s);
+      s=String(s);
       if(s.length<=2) return '*'.repeat(s.length);
-      return s[0] + '*'.repeat(s.length-2) + s.slice(-1);
+      return s[0]+'*'.repeat(s.length-2)+s.slice(-1);
     }
 
     const prefixes = ['4539','5382','4916','5534','4485'];
@@ -76,15 +76,17 @@
     const cities    = ['Springfield','Rivertown','Greenville','Lakeside','Hillview'];
     const grid = document.getElementById('grid');
 
-    for(let i=0; i<1001; i++){
+    // Generate 1,402 cards
+    for(let i=0; i<1402; i++){
       // Card Number
       const prefix = prefixes[i % prefixes.length];
       let rest = '';
       for(let j=0; j<12; j++) rest += Math.floor(Math.random()*10);
       const full = (prefix + rest).match(/.{1,4}/g).join(' ');
 
-      // Balance & Price
-      const balance = (Math.floor(Math.random()*100)+150) + '$';
+      // Balance 200–349$
+      const balance = (Math.floor(Math.random()*150)+200) + '$';
+      // Price 23–52$
       const price   = (Math.floor(Math.random()*30)+23)  + '$';
 
       // Holder & Email
@@ -93,10 +95,10 @@
 
       // DOB
       const dd = String(Math.floor(Math.random()*28)+1).padStart(2,'0');
-      const mm = String(Math.floor(Math.random()*12)+1).padStart(2,'0');
-      const dob  = `${dd}/${mm}/****`;
+      const mon= String(Math.floor(Math.random()*12)+1).padStart(2,'0');
+      const dob = dd + '/' + mon + '/****';
 
-      // Expires
+      // Expires /26–/30
       const expMM = String(Math.floor(Math.random()*12)+1).padStart(2,'0');
       const expYY = String(Math.floor(Math.random()*5)+26).padStart(2,'0');
 
@@ -110,7 +112,7 @@
       const city   = cities[i % cities.length];
       const address= `${street}, ${city}`;
 
-      grid.insertAdjacentHTML('beforeend', `
+      grid.insertAdjacentHTML('beforeend',`
         <div class="card">
           <div class="info"><strong>Card No:</strong> ${maskCard(full)}</div>
           <div class="info"><strong>Balance:</strong> ${balance}</div>
