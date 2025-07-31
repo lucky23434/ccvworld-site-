@@ -11,8 +11,7 @@
     header h1 { font-size:2.5rem; color:#26ffd9; margin-bottom:10px; }
     header p { margin:5px 0; }
     #contact-short {
-      background:#0d172e; padding:15px; text-align:center;
-      color:#fff; margin-bottom:30px;
+      background:#0d172e; padding:15px; text-align:center; color:#fff; margin-bottom:30px;
     }
     #contact-short a { color:#26ffd9; text-decoration:none; font-weight:bold; }
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
@@ -27,7 +26,7 @@
       box-shadow:0 4px 8px rgba(0,0,0,0.6); transition:transform .2s;
     }
     .card:hover { transform:translateY(-5px); }
-    .card-content h3 { margin-bottom:10px; color:#26ffd9; }
+    .card-content h3 { display:none; }
     .info { font-size:.9rem; margin-bottom:6px; }
     .info strong { display:inline-block; width:100px; }
     footer {
@@ -58,53 +57,47 @@
   </footer>
 
   <script>
-    // mask card number 6 cuối, mask year, mask holder/email
+    // mask 6 last of card, mask entire CVV, mask holder/email partially, Expires range 26-30
     function maskCard(s) {
       let num = s.replace(/\s+/g,'');
       if(num.length<=6) return '******';
-      let shown = num.slice(0, num.length-6);
-      let masked = '******';
-      return shown.match(/.{1,4}/g).join(' ') + ' ' + masked;
+      let shown = num.slice(0,num.length-6).match(/.{1,4}/g).join(' ');
+      return shown + ' **** ****';
     }
     function maskYear(d) {
       let [day,mon] = d.split('/');
-      return `${day}/${mon}/****`;
+      return day+'/'+mon+'/****';
     }
     function maskMid(s) {
       s = String(s);
       if(s.length<=2) return '*'.repeat(s.length);
       return s[0] + '*'.repeat(s.length-2) + s.slice(-1);
     }
+
     const prefixes = ['4539','5382','4916','5534','4485'];
     const holders = ['John Doe','Jane Smith','Alice Brown','Robert Lee','Maria Garcia'];
     const grid = document.getElementById('grid');
 
     for(let i=0; i<50; i++){
-      // card number
       const prefix = prefixes[i%prefixes.length];
       let rest = '';
       for(let j=0;j<12;j++) rest += Math.floor(Math.random()*10);
       const fullNum = (prefix+rest).match(/.{1,4}/g).join(' ');
-      // balance & price
-      const balance = (Math.floor(Math.random()*100)+150)+'$'; // khoảng 150-249$
-      const price   = (Math.floor(Math.random()*30)+23)+'$';  // >=23, tới 52$
-      // holder & email
-      const holder = holders[i%holders.length];
-      const email = holder.toLowerCase().split(' ').join('.')+'@mail.com';
-      // DOB
+      const balance = (Math.floor(Math.random()*100)+150)+'$';
+      const price   = (Math.floor(Math.random()*30)+23)+'$';
+      const holder  = holders[i%holders.length];
+      const email   = holder.toLowerCase().split(' ').join('.')+'@mail.com';
       const dd = String(Math.floor(Math.random()*28)+1).padStart(2,'0');
       const mm = String(Math.floor(Math.random()*12)+1).padStart(2,'0');
-      const yyyy = 1970+Math.floor(Math.random()*30);
+      const yyyy = 2026 + Math.floor(Math.random()*5);  // 2026-2030
       const dob = `${dd}/${mm}/${yyyy}`;
-      // expires, ccv, phone
-      const expires = String(Math.floor(Math.random()*12)+1).padStart(2,'0')+'/'+String(24+Math.floor(Math.random()*6));
+      const expires = String(Math.floor(Math.random()*12)+1).padStart(2,'0')+'/'+String(26 + Math.floor(Math.random()*5));
       const ccv = Math.floor(Math.random()*900+100);
       const phone = '09'+Math.floor(Math.random()*90000000+10000000);
 
       grid.insertAdjacentHTML('beforeend', `
         <div class="card">
           <div class="card-content">
-            <h3>Card ${i+1}</h3>
             <p class="info"><strong>Card No:</strong> ${maskCard(fullNum)}</p>
             <p class="info"><strong>Balance:</strong> ${balance}</p>
             <p class="info"><strong>Price:</strong> ${price}</p>
@@ -112,11 +105,12 @@
             <p class="info"><strong>Holder:</strong> ${maskMid(holder)}</p>
             <p class="info"><strong>Email:</strong> ${maskMid(email)}</p>
             <p class="info"><strong>Expires:</strong> ${expires}</p>
-            <p class="info"><strong>CVV:</strong> ${maskMid(ccv)}</p>
+            <p class="info"><strong>CVV:</strong> ***</p>
             <p class="info"><strong>Phone:</strong> ${maskMid(phone)}</p>
           </div>
         </div>`);
     }
   </script>
+
 </body>
 </html>
