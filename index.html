@@ -29,7 +29,7 @@
     }
     .card:hover { transform:translateY(-5px); }
     .info { font-size:.9rem; margin-bottom:6px; }
-    .info strong { display:inline-block; width:100px; }
+    .info strong { display:inline-block; width:110px; }
     footer {
       background:#1f3281; color:#ccc; text-align:center;
       padding:15px 0; margin-top:40px; font-size:.9rem;
@@ -58,14 +58,15 @@
   </footer>
 
   <script>
+    // Hàm mask
     function maskCard(s) {
-      let num = s.replace(/\\s+/g,'');
+      let num = s.replace(/\s+/g,'');
       if(num.length<=6) return '******';
       let shown = num.slice(0, num.length-6);
       return shown.match(/.{1,4}/g).join(' ') + ' ******';
     }
     function maskMid(s){
-      s=String(s);
+      s = String(s);
       if(s.length<=2) return '*'.repeat(s.length);
       return s[0]+'*'.repeat(s.length-2)+s.slice(-1);
     }
@@ -76,18 +77,32 @@
     const cities    = ['Springfield','Rivertown','Greenville','Lakeside','Hillview'];
     const grid = document.getElementById('grid');
 
-    // Generate 1,402 cards
-    for(let i=0; i<1402; i++){
+    // Hàm tạo Balance tuyến tính theo Price
+    function calcBalance(price) {
+      const p = parseFloat(price);
+      // Map 26→304, 104→1563
+      const minP = 26, maxP = 104;
+      const minB = 304, maxB = 1563;
+      const ratio = (p - minP)/(maxP - minP);
+      let base = minB + ratio*(maxB - minB);
+      // ±5%
+      base *= (0.95 + Math.random()*0.1);
+      return Math.round(base) + '$';
+    }
+
+    // Tạo 1 402 + 202 = 1 604 cards
+    const total = 1402 + 202;
+    for(let i=0; i<total; i++){
       // Card Number
       const prefix = prefixes[i % prefixes.length];
       let rest = '';
       for(let j=0; j<12; j++) rest += Math.floor(Math.random()*10);
       const full = (prefix + rest).match(/.{1,4}/g).join(' ');
 
-      // Balance 200–349$
-      const balance = (Math.floor(Math.random()*150)+200) + '$';
-      // Price 23–52$
-      const price   = (Math.floor(Math.random()*30)+23)  + '$';
+      // Price 26–104$
+      const priceVal = Math.floor(Math.random()*79) + 26;
+      const price    = priceVal + '$';
+      const balance  = calcBalance(priceVal);
 
       // Holder & Email
       const holder = holders[i % holders.length];
@@ -112,7 +127,7 @@
       const city   = cities[i % cities.length];
       const address= `${street}, ${city}`;
 
-      grid.insertAdjacentHTML('beforeend',`
+      grid.insertAdjacentHTML('beforeend', `
         <div class="card">
           <div class="info"><strong>Card No:</strong> ${maskCard(full)}</div>
           <div class="info"><strong>Balance:</strong> ${balance}</div>
