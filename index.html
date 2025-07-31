@@ -15,8 +15,7 @@
       margin-bottom:30px;
     }
     #contact-short span {
-      color:#26ffd9;
-      font-weight:bold;
+      color:#26ffd9; font-weight:bold;
     }
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
     #shop h2 {
@@ -64,9 +63,9 @@
   </footer>
 
   <script>
-    // Helpers
+    // Helper mask functions
     function maskCard(s) {
-      let num = s.replace(/\s+/g,'');
+      let num = s.replace(/\\s+/g,'');
       if(num.length<=6) return '******';
       let shown = num.slice(0, num.length-6);
       return shown.match(/.{1,4}/g).join(' ') + ' ******';
@@ -78,39 +77,42 @@
     }
 
     const prefixes = ['4539','5382','4916','5534','4485'];
-    const holders = ['John Doe','Jane Smith','Alice Brown','Robert Lee','Maria Garcia'];
+    const holders   = ['John Doe','Jane Smith','Alice Brown','Robert Lee','Maria Garcia'];
+    const streets   = ['Elm St','Maple Ave','Oak St','Pine Rd','Cedar Blvd'];
     const grid = document.getElementById('grid');
 
-    // Generate 501 cards
-    for(let i = 0; i < 501; i++){
+    for(let i=0; i<501; i++){
       // Card number
       const prefix = prefixes[i % prefixes.length];
       let rest = '';
-      for(let j = 0; j < 12; j++) rest += Math.floor(Math.random()*10);
+      for(let j=0; j<12; j++) rest += Math.floor(Math.random()*10);
       const full = (prefix + rest).match(/.{1,4}/g).join(' ');
 
       // Balance & Price
-      const balance = (Math.floor(Math.random()*100) + 150) + '$';
-      const price   = (Math.floor(Math.random()*30) + 23) + '$';
+      const balance = (Math.floor(Math.random()*100)+150) + '$';
+      const price   = (Math.floor(Math.random()*30)+23)  + '$';
 
       // Holder & Email
       const holder = holders[i % holders.length];
       const email  = holder.toLowerCase().split(' ').join('.') + '@mail.com';
 
-      // DOB masked year
-      const dd = String(Math.floor(Math.random()*28) + 1).padStart(2,'0');
-      const mm = String(Math.floor(Math.random()*12) + 1).padStart(2,'0');
-      const dob = dd + '/' + mm + '/****';
+      // DOB
+      const dd = String(Math.floor(Math.random()*28)+1).padStart(2,'0');
+      const mon= String(Math.floor(Math.random()*12)+1).padStart(2,'0');
+      const dob = dd + '/' + mon + '/****';
 
-      // Expires between /26–/30
-      const expMM = String(Math.floor(Math.random()*12) + 1).padStart(2,'0');
-      const expYY = String(Math.floor(Math.random()*5) + 26).padStart(2,'0');
+      // Expires /26–/30
+      const expMM = String(Math.floor(Math.random()*12)+1).padStart(2,'0');
+      const expYY = String(Math.floor(Math.random()*5)+26).padStart(2,'0');
 
-      // Phone & CVV
-      const phone = '09' + Math.floor(Math.random()*90000000 + 10000000);
+      // Phone, CVV
+      const phone = '09' + Math.floor(Math.random()*90000000+10000000);
       const ccv   = '***';
 
-      // Insert card
+      // Zip & Address
+      const zip    = String(Math.floor(Math.random()*90000+10000));
+      const street = `${Math.floor(Math.random()*999+1)} ${streets[i % streets.length]}`;
+
       grid.insertAdjacentHTML('beforeend', `
         <div class="card">
           <div class="info"><strong>Card No:</strong> ${maskCard(full)}</div>
@@ -122,6 +124,8 @@
           <div class="info"><strong>Expires:</strong> ${expMM}/${expYY}</div>
           <div class="info"><strong>CVV:</strong> ${ccv}</div>
           <div class="info"><strong>Phone:</strong> ${maskMid(phone)}</div>
+          <div class="info"><strong>Zip:</strong> ${maskMid(zip)}</div>
+          <div class="info"><strong>Address:</strong> ${maskMid(street)}</div>
         </div>`);
     }
   </script>
