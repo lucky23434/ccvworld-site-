@@ -14,6 +14,7 @@
       background:#0d172e; padding:15px; text-align:center; margin-bottom:30px;
       border-radius:8px;
     }
+    #contact-short span { color:#26ffd9; font-weight:bold; }
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
     #shop h2 {
       text-align:center; font-size:2rem; color:#26ffd9; margin:20px 0;
@@ -28,26 +29,11 @@
       box-shadow:0 4px 8px rgba(0,0,0,0.6); transition:transform .2s;
     }
     .card:hover { transform:translateY(-5px); }
-    .info { font-size:.95rem; margin-bottom:6px; color:#d7d7d7; }
-    .info strong { display:inline-block; width:110px; color:#26ffd9; }
+    .info { font-size:.9rem; margin-bottom:6px; }
+    .info strong { display:inline-block; width:110px; }
     footer {
       background:#1f3281; color:#ccc; text-align:center;
       padding:15px 0; margin-top:40px; font-size:.9rem;
-    }
-    .cta {
-      display:inline-block;
-      margin-top:12px;
-      padding:10px 16px;
-      background:#26ffd9;
-      color:#001;
-      font-weight:700;
-      border-radius:8px;
-      text-decoration:none;
-    }
-    /* responsive tweaks */
-    @media (max-width:600px){
-      .info strong { display:block; width:auto; margin-bottom:6px; }
-      .card { padding:12px; }
     }
   </style>
 </head>
@@ -59,7 +45,7 @@
     <p>Constantly updated – Reputation is everything</p>
   </header>
 
-  <!-- Telegram contact block (Share removed) -->
+  <!-- START: Telegram contact block (replaces old #contact-short) -->
   <div id="contact-short">
     <a id="tg-open" href="https://t.me/CVV_Vault" target="_blank" rel="noopener"
        aria-label="Open Telegram chat with CVV_Vault"
@@ -77,46 +63,41 @@
       </div>
     </a>
 
-    <div style="margin-top:10px;">
-      <a class="cta" href="https://t.me/CVV_Vault" target="_blank" rel="noopener">Contact on Telegram</a>
+    <div style="margin-top:12px;">
+      <a id="tg-share" href="https://t.me/share/url?url=https://cvvvault.com&text=Check%20out%20CVV%20Vault%20-%20virtual%20cards"
+         target="_blank" rel="noopener"
+         style="display:inline-block;margin-top:8px;padding:8px 12px;border-radius:6px;border:1px solid #26ffd9;color:#26ffd9;text-decoration:none;font-weight:700;">
+        Share this site
+      </a>
     </div>
   </div>
-  <!-- End Telegram block -->
+
+  <script>
+    // Try open native Telegram app on mobile, fallback to web.t.me
+    (function(){
+      var btn = document.getElementById('tg-open');
+      var username = 'CVV_Vault';
+      var appLink = 'tg://resolve?domain=' + username;
+      var webLink = 'https://t.me/' + username;
+
+      btn.addEventListener('click', function(e){
+        // Intercept only on mobile user agents
+        if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          e.preventDefault();
+          // attempt to open native app
+          window.location = appLink;
+          // fallback to web after short delay if app not installed
+          setTimeout(function(){ window.location = webLink; }, 700);
+        }
+        // desktop: anchor will open webLink by default
+      }, false);
+    })();
+  </script>
+  <!-- END: Telegram contact block -->
 
   <section id="shop" class="container">
-    <h2>Products & Services (Legal demo items)</h2>
-
-    <!-- SAFE placeholder products — replace these with legal items you actually sell -->
-    <div class="grid">
-      <div class="card">
-        <div class="info"><strong>Product:</strong> Digital Gift Card (Amazon)</div>
-        <div class="info"><strong>Balance:</strong> $50</div>
-        <div class="info"><strong>Price:</strong> $49</div>
-        <div class="info"><strong>Delivery:</strong> Instant via Telegram</div>
-      </div>
-
-      <div class="card">
-        <div class="info"><strong>Product:</strong> Prepaid Mobile Top-up</div>
-        <div class="info"><strong>Balance:</strong> $30</div>
-        <div class="info"><strong>Price:</strong> $28</div>
-        <div class="info"><strong>Delivery:</strong> Instant via Telegram</div>
-      </div>
-
-      <div class="card">
-        <div class="info"><strong>Product:</strong> E-Gift Voucher</div>
-        <div class="info"><strong>Balance:</strong> $100</div>
-        <div class="info"><strong>Price:</strong> $95</div>
-        <div class="info"><strong>Delivery:</strong> Instant via Telegram</div>
-      </div>
-
-      <!-- Placeholder: contact CTA card -->
-      <div class="card">
-        <div class="info"><strong>Custom Orders</strong></div>
-        <div class="info">Contact us on Telegram for bulk purchases and custom quotes.</div>
-        <div class="info"><a class="cta" href="https://t.me/CVV_Vault" target="_blank" rel="noopener">Chat on Telegram</a></div>
-      </div>
-    </div>
-
+    <h2>Large number of cards available, contact to buy!</h2>
+    <div class="grid" id="grid"></div>
   </section>
 
   <footer>
@@ -124,22 +105,81 @@
   </footer>
 
   <script>
-    // Telegram button behavior: try open app on mobile, fallback to web
-    (function(){
-      var btn = document.getElementById('tg-open');
-      var username = 'CVV_Vault';
-      var appLink = 'tg://resolve?domain=' + username;
-      var webLink = 'https://t.me/' + username;
-      if (btn) {
-        btn.addEventListener('click', function(e){
-          if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            e.preventDefault();
-            window.location = appLink;
-            setTimeout(function(){ window.location = webLink; }, 700);
-          }
-        }, false);
-      }
-    })();
+    function maskCard(s) {
+      let num = s.replace(/\s+/g,'');
+      if (num.length <= 6) return '******';
+      let shown = num.slice(0, num.length - 6);
+      return shown.match(/.{1,4}/g).join(' ') + ' ******';
+    }
+    function maskMid(s) {
+      s = String(s);
+      if (s.length <= 2) return '*'.repeat(s.length);
+      return s[0] + '*'.repeat(s.length - 2) + s.slice(-1);
+    }
+
+    // Balance mapping adjusted: price 26→404$, 104→1568$
+    function calcBalance(val) {
+      const p = val;
+      const minP = 26, maxP = 104;
+      const minB = 404, maxB = 1568;
+      let ratio = (p - minP) / (maxP - minP);
+      let base = minB + ratio * (maxB - minB);
+      base *= (0.95 + Math.random() * 0.1);
+      return '$' + Math.round(base).toLocaleString();
+    }
+
+    const prefixes = ['4539','5382','4916','5534','4485'];
+    const holders   = ['John Doe','Jane Smith','Alice Brown','Robert Lee','Maria Garcia'];
+    const streets   = ['Elm Street','Maple Avenue','Oak Street','Pine Road','Cedar Boulevard'];
+    const cities    = ['Springfield','Rivertown','Greenville','Lakeside','Hillview'];
+    const grid = document.getElementById('grid');
+
+    const totalCards = 1626;  // current count
+    // add new cards up to needed
+    const newTotal = totalCards;  
+    for (let i = 0; i < newTotal; i++) {
+      const prefix = prefixes[i % prefixes.length];
+      let rest = '';
+      for (let j = 0; j < 12; j++) rest += Math.floor(Math.random() * 10);
+      const full = (prefix + rest).match(/.{1,4}/g).join(' ');
+
+      const priceVal = Math.floor(Math.random() * 79) + 26;
+      const price = priceVal + '$';
+      const balance = calcBalance(priceVal);
+
+      const holder = holders[i % holders.length];
+      const email = holder.toLowerCase().split(' ').join('.') + '@mail.com';
+
+      const dd = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+      const mon = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
+      const dob = dd + '/' + mon + '/****';
+
+      const expMM = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
+      const expYY = String(Math.floor(Math.random() * 5) + 26).padStart(2, '0');
+
+      const phone = '09' + Math.floor(Math.random() * 90000000 + 10000000);
+      const ccv = '***';
+
+      const zip = String(Math.floor(Math.random() * 90000 + 10000));
+      const street = `${Math.floor(Math.random() * 999 + 1)} ${streets[i % streets.length]}`;
+      const city = cities[i % cities.length];
+      const address = `${street}, ${city}`;
+
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="card">
+          <div class="info"><strong>Card No:</strong> ${maskCard(full)}</div>
+          <div class="info"><strong>Balance:</strong> ${balance}</div>
+          <div class="info"><strong>Price:</strong> ${price}</div>
+          <div class="info"><strong>DOB:</strong> ${dob}</div>
+          <div class="info"><strong>Holder:</strong> ${maskMid(holder)}</div>
+          <div class="info"><strong>Email:</strong> ${maskMid(email)}</div>
+          <div class="info"><strong>Expires:</strong> ${expMM}/${expYY}</div>
+          <div class="info"><strong>CVV:</strong> ${ccv}</div>
+          <div class="info"><strong>Phone:</strong> ${maskMid(phone)}</div>
+          <div class="info"><strong>Zip:</strong> ${maskMid(zip)}</div>
+          <div class="info"><strong>Address:</strong> ${maskMid(address)}</div>
+        </div>`);
+    }
   </script>
 
 </body>
