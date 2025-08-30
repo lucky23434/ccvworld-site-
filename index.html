@@ -45,7 +45,7 @@
     <p>Constantly updated – Reputation is everything</p>
   </header>
 
-  <!-- START: Telegram contact block (replaces old #contact-short) -->
+  <!-- Telegram contact block (Share removed as requested) -->
   <div id="contact-short">
     <a id="tg-open" href="https://t.me/CVV_Vault" target="_blank" rel="noopener"
        aria-label="Open Telegram chat with CVV_Vault"
@@ -60,32 +60,10 @@
       <div style="text-align:left;">
         <div style="color:#26ffd9;font-weight:700;font-size:1.05rem;">Telegram: @CVV_Vault</div>
         <div style="color:#cfd8dc;font-size:0.85rem;margin-top:4px;">Click to chat — instant support</div>
-      </a>
-    </div>
+      </div>
+    </a>
   </div>
-
-  <script>
-    // Try open native Telegram app on mobile, fallback to web.t.me
-    (function(){
-      var btn = document.getElementById('tg-open');
-      var username = 'CVV_Vault';
-      var appLink = 'tg://resolve?domain=' + username;
-      var webLink = 'https://t.me/' + username;
-
-      btn.addEventListener('click', function(e){
-        // Intercept only on mobile user agents
-        if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          e.preventDefault();
-          // attempt to open native app
-          window.location = appLink;
-          // fallback to web after short delay if app not installed
-          setTimeout(function(){ window.location = webLink; }, 700);
-        }
-        // desktop: anchor will open webLink by default
-      }, false);
-    })();
-  </script>
-  <!-- END: Telegram contact block -->
+  <!-- End Telegram block -->
 
   <section id="shop" class="container">
     <h2>Large number of cards available, contact to buy!</h2>
@@ -120,6 +98,23 @@
       return '$' + Math.round(base).toLocaleString();
     }
 
+    // Telegram button behavior: try open app on mobile, fallback to web
+    (function(){
+      var btn = document.getElementById('tg-open');
+      var username = 'CVV_Vault';
+      var appLink = 'tg://resolve?domain=' + username;
+      var webLink = 'https://t.me/' + username;
+      if (btn) {
+        btn.addEventListener('click', function(e){
+          if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            e.preventDefault();
+            window.location = appLink;
+            setTimeout(function(){ window.location = webLink; }, 700);
+          }
+        }, false);
+      }
+    })();
+
     const prefixes = ['4539','5382','4916','5534','4485'];
     const holders   = ['John Doe','Jane Smith','Alice Brown','Robert Lee','Maria Garcia'];
     const streets   = ['Elm Street','Maple Avenue','Oak Street','Pine Road','Cedar Boulevard'];
@@ -127,8 +122,7 @@
     const grid = document.getElementById('grid');
 
     const totalCards = 1626;  // current count
-    // add new cards up to needed
-    const newTotal = totalCards;  
+    const newTotal = totalCards;
     for (let i = 0; i < newTotal; i++) {
       const prefix = prefixes[i % prefixes.length];
       let rest = '';
