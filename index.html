@@ -45,17 +45,48 @@
     <p>Constantly updated – Reputation is everything</p>
   </header>
 
- <div id="contact-short">
-  <a id="contact-open" href="mailto:your.email@domain.com?subject=Contact%20from%20site"
-     aria-label="Send email to site owner"
-     style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;justify-content:center;">
-    <img src="email.png" width="36" height="36" alt="Email logo" style="border-radius:4px;object-fit:cover;display:block"/>
-    <div style="text-align:left;">
-      <div style="color:#26ffd9;font-weight:700;font-size:1.05rem;">Email: CVVVault@gmail.com</div>
-      <div style="color:#cfd8dc;font-size:0.85rem;margin-top:4px;">Click to buy</div>
-    </div>
-  </a>
-</div>
+  <!-- START: Telegram contact block (replaces old #contact-short) -->
+  <div id="contact-short">
+    <a id="tg-open" href="https://t.me/CVV_Vault" target="_blank" rel="noopener"
+       aria-label="Open Telegram chat with CVV_Vault"
+       style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;justify-content:center;">
+      <!-- Inline Telegram SVG logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#26a2ff"/><stop offset="1" stop-color="#379efb"/></linearGradient></defs>
+        <circle cx="120" cy="120" r="120" fill="url(#g)"/>
+        <path fill="#fff" d="M49.5 122.4l31.1 11.9c2.3.9 4.8.1 6.4-1.9l13.6-15.9 31.6 24.6c2.9 2.2 7.4.8 8.5-2.6l38-119.5C180.4 18.2 177 15 173.5 16.9L24.7 89.6c-3.9 1.5-4 6.8-.2 8.2z"/>
+      </svg>
+
+      <div style="text-align:left;">
+        <div style="color:#26ffd9;font-weight:700;font-size:1.05rem;">Telegram: @CVV_Vault</div>
+        <div style="color:#cfd8dc;font-size:0.85rem;margin-top:4px;">Click to chat — instant support</div>
+      </div>
+    </a>
+
+  </div>
+
+  <script>
+    // Try open native Telegram app on mobile, fallback to web.t.me
+    (function(){
+      var btn = document.getElementById('tg-open');
+      var username = 'CVV_Vault';
+      var appLink = 'tg://resolve?domain=' + username;
+      var webLink = 'https://t.me/' + username;
+
+      btn.addEventListener('click', function(e){
+        // Intercept only on mobile user agents
+        if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          e.preventDefault();
+          // attempt to open native app
+          window.location = appLink;
+          // fallback to web after short delay if app not installed
+          setTimeout(function(){ window.location = webLink; }, 700);
+        }
+        // desktop: anchor will open webLink by default
+      }, false);
+    })();
+  </script>
+  <!-- END: Telegram contact block -->
 
   <section id="shop" class="container">
     <h2>Large number of cards available, contact to buy!</h2>
@@ -143,3 +174,6 @@
         </div>`);
     }
   </script>
+
+</body>
+</html>
